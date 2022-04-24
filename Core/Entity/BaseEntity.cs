@@ -10,6 +10,13 @@ namespace Core.Entity
     }
     public class BaseEntity:IBaseEntity
     {
+        public BaseEntity()
+        {
+            Active = true;
+            Delete = false;
+            Created = DateTime.Now;
+            Update = DateTime.Now;
+        }
         public bool Active { get; set; }//true//false//true//false
         public bool Delete { get; set; }//false//false//false//true
         public DateTime Created { get; set; }

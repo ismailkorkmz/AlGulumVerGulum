@@ -9,5 +9,6 @@ namespace Entity.POCO
     {
         public string Url { get; set; }
         public int ProductId { get; set; }
+        public virtual Product Product { get; set; }
     }
 }

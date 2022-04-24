@@ -1,12 +1,13 @@
 ﻿using Core.Entity;
+using Microsoft.AspNetCore.Identity;
 using System;
 using System.Collections.Generic;
 using System.Text;
 
 namespace Entity.POCO
 {
-    public class AppUser:BaseEntity
+    public class AppUser:IdentityUser<int>
     {
-        public virtual ICollection<UserRole> UserRole { get; set; }
+        public string Adress { get; set; }
     }
 }
