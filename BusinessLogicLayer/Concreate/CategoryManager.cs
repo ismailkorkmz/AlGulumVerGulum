@@ -4,6 +4,7 @@ using DataAccessLayer.Abstract;
 using Entity.POCO;
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Text;
 
 namespace BusinessLogicLayer.Concreate
@@ -28,7 +29,6 @@ namespace BusinessLogicLayer.Concreate
                 //{
                 //    return new EntityResult("Null", EntityResultType.NonValidation);
                 //}
-                
                 if (categoryDal.Add(entity))
                 {
                     return new EntityResult(ResultTypeMessage.Add());
@@ -38,7 +38,8 @@ namespace BusinessLogicLayer.Concreate
             catch (Exception ex)
             {
 
-                return new EntityResult(ResultTypeMessage.Error(ex) + ex.ToInnest().Message,EntityResultType.Error);
+                return new EntityResult(ResultTypeMessage.Error(ex) + ex.ToInnest().Message, EntityResultType.Error);
+
             }
         }
 
@@ -55,6 +56,25 @@ namespace BusinessLogicLayer.Concreate
         public EntityResult<Category> Get(int id)
         {
             throw new NotImplementedException();
+        }
+
+        public EntityResult<IEnumerable<Category>> GetCategory()
+        {
+            try
+            {
+                var result = categoryDal.GetCategory();
+                if (result != null && result.Count() > 0)
+                {
+                    return new EntityResult<IEnumerable<Category>>(result, "Success", EntityResultType.Success);
+
+                }
+                return new EntityResult<IEnumerable<Category>>(null, "Notfound", EntityResultType.NotFound);
+            }
+            catch (Exception ex)
+            {
+
+                return new EntityResult<IEnumerable<Category>>(null, "Error: " + ex.ToInnest().Message, EntityResultType.Error);
+            }
         }
 
         public EntityResult Update(Category entity)
