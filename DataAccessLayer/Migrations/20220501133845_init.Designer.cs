@@ -10,7 +10,7 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace DataAccessLayer.Migrations
 {
     [DbContext(typeof(AlGulumVerGulumDbContex))]
-    [Migration("20220427122555_init")]
+    [Migration("20220501133845_init")]
     partial class init
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
